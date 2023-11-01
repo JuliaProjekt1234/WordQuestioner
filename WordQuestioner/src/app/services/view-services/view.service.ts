@@ -6,7 +6,11 @@ import { Views } from "src/app/models/views-enum.medel";
     providedIn: 'root',
 })
 export class ViewService {
-    activeViewSubject = new BehaviorSubject<Views>(Views.Progress);
+    private activeViewSubject = new BehaviorSubject<Views>(Views.Progress);
     activeView$ = this.activeViewSubject.asObservable();
     get activieView() { return this.activeViewSubject.value; }
+
+    public changeView(view: Views): void {
+        this.activeViewSubject.next(view);
+    }
 }

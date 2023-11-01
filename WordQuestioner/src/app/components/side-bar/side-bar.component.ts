@@ -12,7 +12,11 @@ export class SideBarComponent {
   public readonly views = Views;
   public activeView$ = new Observable<Views>();
 
-  constructor(viewService: ViewService) {
+  constructor(private viewService: ViewService) {
     this.activeView$ = viewService.activeView$;
+  }
+
+  onChangeView(view: any) {
+    this.viewService.changeView(view);
   }
 }

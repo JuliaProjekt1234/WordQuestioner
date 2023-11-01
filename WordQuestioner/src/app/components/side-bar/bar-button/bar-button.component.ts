@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Views } from 'src/app/models/views-enum.medel';
 
@@ -12,4 +12,10 @@ export class BarButtonComponent {
   @Input() iconName = "";
   @Input() view = Views.Progress;
   @Input() activeView$: Observable<Views> = new Observable();
+
+  @Output() changeView = new EventEmitter<Views>();
+
+  public onChangeView() {
+    this.changeView.emit(this.view);
+  }
 }
