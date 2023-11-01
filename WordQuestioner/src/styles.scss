@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+p,
+body {
+    margin: 0;
+    padding: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+}
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+    --primary-grey: #e2e5e7;
+    --primary-grey-dark: #b4bcc2;
+
+}
+
+.mat-body p, .mat-body-2 p, .mat-typography .mat-body p, .mat-typography .mat-body-2 p, .mat-typography p{
+    margin: 0 !important;
+}

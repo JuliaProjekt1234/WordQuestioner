@@ -1,0 +1,4 @@
+<div class="bar-button-wrapper" [ngClass]="{'bar-button-active': (activeView$ | async) === view }">
+    <mat-icon>{{iconName}}</mat-icon>
+    <p>{{buttonTitle}}</p>
+</div>
