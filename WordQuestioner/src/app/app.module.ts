@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ColoPickerComponent } from './components/lesson/add-lesson/color-picker-button/color-picker.component';
 import { WordTranslationsComponent } from './components/lesson/add-lesson/word-translations/word-translations.component';
 import { MaterialModule } from 'src/modules/material-modules.module';
+import { MyLessonsComponent } from './components/lesson/my-lessons/my-lesson.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MaterialModule } from 'src/modules/material-modules.module';
     BarButtonComponent,
     AddLessonComponent,
     ColoPickerComponent,
-    WordTranslationsComponent
+    WordTranslationsComponent,
+    MyLessonsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddLessonComponent } from './components/lesson/add-lesson/add-lesson.component';
+import { MyLessonsComponent } from './components/lesson/my-lessons/my-lesson.component';
 
 const routes: Routes = [
-  { path: "add_lesson", component: AddLessonComponent }
+  { path: "add_lesson", component: AddLessonComponent },
+  { path: "my_lessons", component: MyLessonsComponent }
 ];
 
 @NgModule({
@@ -11,5 +13,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  
+
 }

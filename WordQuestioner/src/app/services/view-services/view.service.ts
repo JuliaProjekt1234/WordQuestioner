@@ -12,7 +12,7 @@ export class ViewService {
 
     public readonly sideBarButtons = [
         new SideBarButton("my progress", "attachment", Views.Progress),
-        new SideBarButton("my lessons", "class", Views.MyLessons),
+        new SideBarButton("my lessons", "class", Views.MyLessons, '/my_lessons'),
         new SideBarButton("add lesson", "note_add", Views.AddLesson, "/add_lesson"),
         new SideBarButton("settings", "settings", Views.Settings),
     ];
