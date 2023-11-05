@@ -1,0 +1,21 @@
+.tag-color {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    box-shadow: var(--shadow-color);
+    background-color: rgb(56, 56, 173);
+    &:hover {
+        box-shadow: var(--shadow-color-dark);
+    }
+}
+
+.color-picker-menu {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 8px;
+    max-width: 170px;
+    justify-content: center;
+}

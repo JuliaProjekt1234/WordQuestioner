@@ -1,0 +1,20 @@
+<div class="translations-wrapper scroll">
+    <form [formGroup]="translationsForm" (ngSubmit)="onSubmit()">
+        <div class="translation-row" *ngFor="let group of getListFromForm(); index as i">
+            <mat-checkbox [formControl]="getControl('isSelected', i)"></mat-checkbox>
+            <mat-form-field appearance="outline">
+                <mat-label>word</mat-label>
+                <input matInput [attr.autofocus]="true">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>translation</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <button class="button button-bg-red" type="button" (click)="onRemove(i)">Remove</button>
+        </div>
+        <div class="button-wrapper">
+            <button class="button button-bg-blue" type="submit">Add word</button>
+            <button class="button button-bg-red" type="button" (click)="onRemoveSelected()">Remove selected</button>
+        </div>
+    </form>
+</div>

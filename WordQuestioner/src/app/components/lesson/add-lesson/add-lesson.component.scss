@@ -1,0 +1,50 @@
+.add-lesson-wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    box-shadow: var(--shadow-color);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    .add-lesson-form-wrapper {
+        padding: 24px;
+        max-width: 900px;
+        width: 100%;
+        display: flex;
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            div {
+                display: flex;
+                gap: 24px;
+                align-items: center;
+            }
+            div:first-of-type {
+                .field-name-wrapper {
+                    width: 100%;
+                    min-width: 0;
+                    max-width: 100%;
+                    gap: 8px;
+                    .color-tag {
+                        width: 8px;
+                        height: 40px;
+                        box-shadow: var(--shadow-color);
+                    }
+                    mat-form-field {
+                        width: 100%;
+                    }
+                }
+            }
+            word-translations {
+                height: 100%;
+                min-height: 0;
+                max-height: 100%;
+                padding: 4px 4px 24px 4px;
+                overflow: hidden;
+            }
+        }
+    }
+}

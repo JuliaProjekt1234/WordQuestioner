@@ -1,0 +1,8 @@
+<div class="tag-color" [style.backgroundColor]="activeColor" [matMenuTriggerFor]="menu"></div>
+
+<mat-menu #menu="matMenu">
+    <div class="color-picker-menu">
+        <div class="tag-color" *ngFor="let color of colorsToChoose" [style.backgroundColor]="color"
+            (click)="changeColor(color)"> </div>
+    </div>
+</mat-menu>

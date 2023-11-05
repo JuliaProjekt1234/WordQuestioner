@@ -1,0 +1,30 @@
+.translations-wrapper {
+    height: 100%;
+    min-height: 0;
+    max-height: 100%;
+    overflow-y: auto;
+    width: 100%;
+    margin-top: 16px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-color);
+    padding: 16px 24px 16px 16px;
+    .translation-row {
+        width: 100%;
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        mat-form-field {
+            width: 50%;
+        }
+        .button{
+            align-self: flex-start;
+        }
+    }
+
+    .button-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        gap: 16px;
+    }
+}

@@ -1,8 +1,8 @@
 <div class="side-bar-wrapper">
     <div class="side-bar-content">
-        <bar-button (changeView)="onChangeView($event)" [buttonTitle]="'my progress'" [iconName]="'attachment'" [view]="views.Progress" [activeView$]="activeView$"></bar-button>
-        <bar-button (changeView)="onChangeView($event)" [buttonTitle]="'my lessons'" [iconName]="'class'" [view]="views.MyLessons" [activeView$]="activeView$"></bar-button>
-        <bar-button (changeView)="onChangeView($event)" [buttonTitle]="'add lesson'" [iconName]="'note_add'" [view]="views.AddLesson" [activeView$]="activeView$"></bar-button>
-        <bar-button (changeView)="onChangeView($event)" [buttonTitle]="'settings'" [iconName]="'settings'" [view]="views.Settings" [activeView$]="activeView$"></bar-button>
+        <bar-button *ngFor="let sideBarButton of sideBarButtons" (changeView)="onChangeView($event)"
+            [buttonTitle]="sideBarButton.buttonTitle" [iconName]="sideBarButton.iconName" [view]="sideBarButton.view"
+            [activeView$]="activeView$">
+        </bar-button>
     </div>
 </div>
