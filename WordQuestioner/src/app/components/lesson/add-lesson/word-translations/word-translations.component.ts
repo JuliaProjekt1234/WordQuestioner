@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
-import { AbstractControl, FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Translation } from "src/app/models/lesson.model";
+import { SnackBarService } from "src/app/services/view-services/snack-bar.service";
 
 
 @Component({
@@ -12,9 +14,23 @@ export class WordTranslationsComponent {
   public counter = 1;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackBarService: SnackBarService
   ) {
     this.createForm();
+  }
+
+  public getTranslationValues(): Translation[] {
+    if (this.translationsForm.invalid) {
+      this.snackBarService.openSnackBar("Your translation is invalid");
+      return [];
+    }
+    return Object.values(this.translationsForm.controls).map(gropup => {
+      let formGroup = gropup as FormGroup;
+      let word = formGroup.controls["word"].value;
+      let translation = formGroup.controls["translation"].value;
+      return new Translation(word, translation)
+    })
   }
 
   public getListFromForm(): FormGroup[] {
@@ -55,9 +71,9 @@ export class WordTranslationsComponent {
 
   private getEmptyGroup() {
     return this.formBuilder.group({
-      "isSelected": { value: true },
-      "word": { value: "" },
-      "translation": { value: "" }
+      isSelected: [true],
+      word: ["", [Validators.required]],
+      translation: ["", [Validators.required]]
     })
   }
 

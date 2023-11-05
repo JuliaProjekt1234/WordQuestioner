@@ -1,9 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AppConstants } from "src/app/constants/app-constants";
-import { QuestionerLanguageMode, QuestionerType } from "src/app/models/lesson.model";
+import { Lesson, QuestionerLanguageMode, QuestionerType, Translation } from "src/app/models/lesson.model";
 import { LessonHttpService } from "src/app/services/http-services/lesson-http.service";
 import { SnackBarService } from "src/app/services/view-services/snack-bar.service";
+import { WordTranslationsComponent } from "./word-translations/word-translations.component";
 
 @Component({
   selector: 'add-lesson',
@@ -11,6 +12,8 @@ import { SnackBarService } from "src/app/services/view-services/snack-bar.servic
   styleUrls: ['./add-lesson.component.scss']
 })
 export class AddLessonComponent {
+  @ViewChild("translationsBox") translationsBoxRef: any;
+
   public addLessonForm: FormGroup = new FormGroup({});
   public activeColorTag = AppConstants.ColorsToChoose[0];
   public categories: string[] = [];
@@ -22,8 +25,8 @@ export class AddLessonComponent {
     private snackBarService: SnackBarService,
     private lessonHttpService: LessonHttpService
   ) {
-    this.createForm();
     this.lessonHttpService.getCategories().subscribe(categries => this.categories = categries);
+    this.createForm();
     this.questionerTypes = Object.values(QuestionerType);
     this.questionerLanguageModes = Object.values(QuestionerLanguageMode);
   }
@@ -31,8 +34,9 @@ export class AddLessonComponent {
   private createForm() {
     this.addLessonForm = this.formBuider.group({
       name: ['', [Validators.required]],
-      questionerType: [QuestionerType.Write.toString()],
-      questionerLanguageMode: [QuestionerLanguageMode.LeftWord.toString()]
+      category: [this.categories.length > 0 ? this.categories[0] : "", [Validators.required]],
+      questionerType: [QuestionerType.Write.toString(), [Validators.required]],
+      questionerLanguageMode: [QuestionerLanguageMode.LeftWord.toString(), [Validators.required]]
     })
   }
 
@@ -49,5 +53,24 @@ export class AddLessonComponent {
 
   public onChangedTagColor(color: string) {
     this.activeColorTag = color;
+  }
+
+  onSubmit() {
+    if (this.addLessonForm.invalid) return;
+    let translations = (this.translationsBoxRef as WordTranslationsComponent).getTranslationValues();
+    if (!translations || translations.length == 0) return;
+    let lesson = this.createLessonFromForm(translations);
+    this.lessonHttpService.addNewLesson(lesson).subscribe(() =>
+      this.snackBarService.openSnackBar("Lesson was added")
+    )
+  }
+
+  private createLessonFromForm(translations: Translation[]): Lesson {
+    return new Lesson(this.getValueFromForm("name"), this.getValueFromForm("category"), this.activeColorTag,
+      0, 0, translations, this.getValueFromForm("questionerType") as QuestionerType, this.getValueFromForm("questionerLanguageMode") as QuestionerLanguageMode)
+  }
+
+  private getValueFromForm(controlName: string): string {
+    return this.addLessonForm.controls[controlName].value;
   }
 }

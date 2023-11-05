@@ -1,12 +1,13 @@
 export class Lesson {
     constructor(
         public name: string,
+        public category: string,
         public colorTag: string,
         public finishedCount: number,
         public startedCount: number,
-        public questionerLanguageMode: QuestionerLanguageMode,
-        public questionerType: QuestionerType,
         public translations: Translation[],
+        public questionerType: QuestionerType,
+        public questionerLanguageMode: QuestionerLanguageMode,
     ) {
 
     }

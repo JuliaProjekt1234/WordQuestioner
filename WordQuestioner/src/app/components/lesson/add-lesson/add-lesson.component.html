@@ -1,6 +1,6 @@
 <div class="add-lesson-wrapper">
     <div class="add-lesson-form-wrapper">
-        <form [formGroup]="addLessonForm">
+        <form [formGroup]="addLessonForm" (ngSubmit)="onSubmit()">
             <div>
                 <div class="field-name-wrapper">
                     <div class="color-tag" [style.backgroundColor]="this.activeColorTag"></div>
@@ -14,7 +14,7 @@
             <div>
                 <mat-form-field>
                     <mat-label>Category</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="category">
                         <mat-option *ngFor="let category of categories" [value]="category">
                             {{category}}
                         </mat-option>
@@ -31,7 +31,7 @@
             <div>
                 <mat-form-field>
                     <mat-label>Questioner Type</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="questionerType">
                         <mat-option *ngFor="let questionerType of questionerTypes" [value]="questionerType">
                             {{questionerType}}
                         </mat-option>
@@ -39,7 +39,7 @@
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Questioner Language Mode</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="questionerLanguageMode">
                         <mat-option *ngFor="let questionerLanguageMode of questionerLanguageModes"
                             [value]="questionerLanguageMode">
                             {{questionerLanguageMode}}
@@ -47,7 +47,7 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <word-translations></word-translations>
+            <word-translations #translationsBox></word-translations>
             <div class="button-wrapper">
                 <button class="button button-bg-blue">Save</button>
             </div>

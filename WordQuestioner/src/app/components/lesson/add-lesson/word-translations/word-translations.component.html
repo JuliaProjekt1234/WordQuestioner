@@ -4,11 +4,11 @@
             <mat-checkbox [formControl]="getControl('isSelected', i)"></mat-checkbox>
             <mat-form-field appearance="outline">
                 <mat-label>word</mat-label>
-                <input matInput [attr.autofocus]="true">
+                <input matInput [formControl]="getControl('word', i)">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>translation</mat-label>
-                <input matInput>
+                <input matInput [formControl]="getControl('translation', i)">
             </mat-form-field>
             <button class="button button-bg-red" type="button" (click)="onRemove(i)">Remove</button>
         </div>
