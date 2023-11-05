@@ -45,6 +45,14 @@
                 padding: 4px 4px 24px 4px;
                 overflow: hidden;
             }
+
+            .button-wrapper {
+                justify-content: center;
+                width: 100%;
+                .button {
+                    width: 70%;
+                }
+            }
         }
     }
 }
