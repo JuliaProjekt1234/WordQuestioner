@@ -4,6 +4,8 @@ export class Lesson {
         public colorTag: string,
         public finishedCount: number,
         public startedCount: number,
+        public questionerLanguageMode: QuestionerLanguageMode,
+        public questionerType: QuestionerType,
         public translations: Translation[],
     ) {
 
@@ -18,4 +20,16 @@ export class Translation {
     ) {
 
     }
+}
+
+export enum QuestionerLanguageMode {
+    LeftWord = "LeftWord",
+    RightWord = "RightWord",
+    Mixed = "Mixed"
+}
+
+export enum QuestionerType {
+    Write = "Write",
+    Speak = "Speak",
+    Mixed = "Mixed"
 }

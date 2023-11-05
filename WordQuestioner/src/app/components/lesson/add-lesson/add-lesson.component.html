@@ -28,6 +28,25 @@
                     Add category
                 </button>
             </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>Questioner Type</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let questionerType of questionerTypes" [value]="questionerType">
+                            {{questionerType}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Questioner Language Mode</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let questionerLanguageMode of questionerLanguageModes"
+                            [value]="questionerLanguageMode">
+                            {{questionerLanguageMode}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
             <word-translations></word-translations>
         </form>
     </div>
