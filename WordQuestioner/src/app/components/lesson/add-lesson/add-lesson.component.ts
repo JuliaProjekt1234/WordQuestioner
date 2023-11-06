@@ -45,9 +45,6 @@ export class AddLessonComponent {
       (category: string) => {
         this.categories.push(category);
         this.snackBarService.openSnackBar("New category was added");
-      },
-      () => {
-        this.snackBarService.openSnackBar("Added category - error")
       });
   }
 

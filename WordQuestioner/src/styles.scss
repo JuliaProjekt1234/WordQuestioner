@@ -21,7 +21,7 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -30,7 +30,7 @@ body {
     --primary-grey-dark: #b4bcc2;
     --primary-blue-dark: #041b2d;
 
-    --primary-red: #FF4136;
+    --primary-red: #ff4136;
     --shadow-color: rgba(0, 0, 0, 0.18) 0px 2px 4px;
     --shadow-color-dark: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
         rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -47,4 +47,16 @@ body {
 .mdc-text-field--filled:not(.mdc-text-field--disabled),
 .mat-mdc-form-field-focus-overlay {
     background-color: unset !important;
+}
+
+.error-snack-bar {
+    background-color: var(--primary-red) !important;
+}
+
+.snack-bar {
+    background-color: var(--primary-blue-dark) !important;
+}
+
+.mat-mdc-snack-bar-container {
+    --mdc-snackbar-container-color: transparent;
 }

@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const cors = require('cors');
-const bodyParser = require('body-parser');
+const cors = require('cors'); 
+const bodyParser = require('body-parser'); 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('my-database', null, null, {
   dialect: 'sqlite',
@@ -30,7 +30,7 @@ const Lessons = sequelize.define('lesson', {
     type: Sequelize.INTEGER,
   },
   translations: {
-    type: Sequelize.JSON,
+    type: Sequelize.JSON, 
   },
   questionerType: {
     type: Sequelize.STRING,
@@ -52,34 +52,32 @@ sequelize.sync()
 app.use(cors());
 app.use(bodyParser.json());
 
-//To do - seaprate to new file
 app.get('/getLessons', async (req, res) => {
-  //To do - add Satus if error
-  let lessons = await Lessons.findAll();
-  res.status(200).json(lessons);
+let lessons= await Lessons.findAll();
+	res.status(200).json(lessons);
 });
 
-//To do - seaprate to new file
+
 app.post('/addLesson', (req, res) => {
-  //To do - add Satus if error
-  const lesson = req.body;
-  Lessons.create(lesson)
+	const lesson= req.body;
+Lessons.create(lesson)
   res.status(200).json('Not implemented yet');
 });
 
 app.put('/addCategory', (req, res) => {
   //To do - add Satus if error
-  const categoryName = req.body.categoryName;
-  Categories.create({
-    category: categoryName,
-  })
+	const categoryName = req.body.categoryName;
+	Categories.create({
+		category: categoryName,
+	})
   res.status(200).json(categoryName);
 });
 
+
 app.get('/getCategories', async (req, res) => {
   //To do - add status if error
-  let categoriesFromDb = await Categories.findAll();
-  res.status(200).json(categoriesFromDb.map(c => c.category));
+	let categoriesFromDb = await Categories.findAll();
+	res.status(200).json(categoriesFromDb.map(c => c.category));
 });
 
 app.listen(port, () => {

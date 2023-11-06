@@ -18,7 +18,18 @@ export class SnackBarService {
             {
                 duration: duration,
                 horizontalPosition: horizontalPosition,
-                verticalPosition: verticalPosition
+                verticalPosition: verticalPosition,
+                panelClass: "snack-bar"
+            })
+    }
+
+    public openErrorSnackBar(message: string): void {
+        this.snackBar.open(message, 'close',
+            {
+                duration: duration,
+                horizontalPosition: horizontalPosition,
+                verticalPosition: verticalPosition,
+                panelClass: "error-snack-bar"
             })
     }
 }
