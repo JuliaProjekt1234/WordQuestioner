@@ -14,18 +14,18 @@ export class LessonHttpService {
     }
 
     addCategory(categoryName: string): Observable<string> {
-        return this.http.put(`${AppConstants.BaseUrl}addCategory`, { categoryName: categoryName }) as Observable<string>;
+        return this.http.post(`${AppConstants.BaseUrl}addCategory`, { categoryName: categoryName }, { withCredentials: true }) as Observable<string>;
     }
 
     getCategories(): Observable<string[]> {
-        return this.http.get(`${AppConstants.BaseUrl}getCategories`) as Observable<string[]>;
+        return this.http.get(`${AppConstants.BaseUrl}getCategories`, { withCredentials: true }) as Observable<string[]>;
     }
 
     addNewLesson(lesson: Lesson): Observable<Object> {
         return this.http.post(`${AppConstants.BaseUrl}addLesson`, lesson);
     }
 
-    getLessons(): Observable<Object>{
+    getLessons(): Observable<Object> {
         return this.http.get(`${AppConstants.BaseUrl}getLessons`);
     }
 }

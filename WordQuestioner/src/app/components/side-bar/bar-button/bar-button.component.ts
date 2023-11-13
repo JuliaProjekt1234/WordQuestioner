@@ -5,7 +5,7 @@ import { Views } from 'src/app/models/views-enum.medel';
 @Component({
   selector: 'bar-button',
   templateUrl: './bar-button.component.html',
-  styleUrls: ['./bar-button.component.scss']
+  styleUrls: ['./bar-button.component.scss', './../side-bar-button-style.scss']
 })
 export class BarButtonComponent {
   @Input() buttonTitle = "";

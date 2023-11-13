@@ -1,0 +1,22 @@
+.side-bar-button{
+    width: 64px;
+    color: var(--primary-grey-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    p {
+        font-size: 8px;
+        text-transform: uppercase;
+    }
+    mat-icon {
+        width: 24px;
+        height: 24px;
+    }
+    &:hover {
+        color: white;
+    }
+}

@@ -1,0 +1,14 @@
+<div class="login-wrapper">
+    <form [formGroup]="registrationForm">
+        <mat-form-field>
+            <mat-label>login</mat-label>
+            <input matInput formControlName="login">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>password</mat-label>
+            <input type="password" matInput formControlName="password">
+        </mat-form-field>
+        <button class="button button-bg-blue" type="submit" (click)="onSubmit()">Registration</button>
+        <p>Are you a member? <a routerLink="/login">Sign in</a> now</p>
+    </form>
+</div>

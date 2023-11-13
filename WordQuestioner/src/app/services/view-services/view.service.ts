@@ -32,7 +32,7 @@ export class ViewService {
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
                 let view = this.getViewFromUrl(event.url)
-                if (!view || view === this.activieView) return;
+                if (!view) return;
                 this.activeViewSubject.next(view)
             }
         });
@@ -48,5 +48,13 @@ export class ViewService {
 
     public changeView(view: Views): void {
         this.activeViewSubject.next(view);
+    }
+
+    public chageToActivView(): void {
+        this.activeViewSubject.next(this.activieView);
+    }
+
+    public changeViewByUrl(url: string): void {
+        this.router.navigateByUrl(url)
     }
 }

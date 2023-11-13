@@ -1,0 +1,32 @@
+.login-wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    box-shadow: var(--shadow-color);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    background-image: url("/assets/images/undraw_connection.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px;
+        width: 30%;
+        height: fit-content;
+        button {
+            margin-top: 16px;
+        }
+        p {
+            width: 100%;
+            text-align: center;
+            margin-top: 8px;
+        }
+    }
+}

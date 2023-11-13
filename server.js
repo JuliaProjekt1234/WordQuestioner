@@ -1,16 +1,25 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const cors = require('cors'); 
-const bodyParser = require('body-parser'); 
+const cors = require('cors');
+const bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('my-database', null, null, {
   dialect: 'sqlite',
   storage: 'my-database.db',
 });
+const passport = require('passport');
+const session = require('express-session');
+const LocalStrategy = require('passport-local').Strategy;
+
 
 const Categories = sequelize.define('categories', {
   category: Sequelize.STRING,
+});
+
+const Users = sequelize.define('users', {
+  login: Sequelize.STRING,
+  password: Sequelize.STRING
 });
 
 const Lessons = sequelize.define('lesson', {
@@ -30,7 +39,7 @@ const Lessons = sequelize.define('lesson', {
     type: Sequelize.INTEGER,
   },
   translations: {
-    type: Sequelize.JSON, 
+    type: Sequelize.JSON,
   },
   questionerType: {
     type: Sequelize.STRING,
@@ -49,35 +58,108 @@ sequelize.sync()
     console.error('eror with synchronization of table:', err);
   });
 
-app.use(cors());
+app.use(session({
+  secret: 'your-secret-key',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { secure: false },
+}));
+app.use(cors({
+  origin: 'http://localhost:4200',
+  credentials: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(bodyParser.json());
 
+passport.use(new LocalStrategy(
+  async (username, password, done) => {
+    let user = await Users.findOne({
+      attributes: ['id', 'login', 'password'],
+      where: {
+        login: username
+      },
+    });
+
+    if (password != user.password)
+      return done(null, false);
+
+    return done(null, user);
+  }
+));
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  let user = await Users.findOne({
+    attributes: ['id', 'login', 'password'],
+    where: {
+      id: id
+    },
+  });
+  done(null, user);
+});
+
+function requireAuthentication(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.status(401).send("lack of authentification");
+}
+
 app.get('/getLessons', async (req, res) => {
-let lessons= await Lessons.findAll();
-	res.status(200).json(lessons);
+  let lessons = await Lessons.findAll();
+  res.status(200).json(lessons);
 });
 
 
-app.post('/addLesson', (req, res) => {
-	const lesson= req.body;
-Lessons.create(lesson)
+app.post('/addLesson', [requireAuthentication], (req, res) => {
+  const lesson = req.body;
+  Lessons.create(lesson)
   res.status(200).json('Not implemented yet');
 });
 
-app.put('/addCategory', (req, res) => {
-  //To do - add Satus if error
-	const categoryName = req.body.categoryName;
-	Categories.create({
-		category: categoryName,
-	})
+
+app.post('/addCategory', [requireAuthentication], (req, res) => {
+  const categoryName = req.body.categoryName;
+  Categories.create({
+    category: categoryName,
+  });
   res.status(200).json(categoryName);
 });
 
 
-app.get('/getCategories', async (req, res) => {
-  //To do - add status if error
-	let categoriesFromDb = await Categories.findAll();
-	res.status(200).json(categoriesFromDb.map(c => c.category));
+app.get('/getCategories', [requireAuthentication], async (req, res) => {
+  //To do - add status if error\
+  let categoriesFromDb = await Categories.findAll();
+  res.status(200).json(categoriesFromDb.map(c => c.category));
+});
+
+app.post('/login',
+  passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }),
+  function (req, res) {
+    res.status(200).json("kfmf")
+  });
+
+app.post('/registration', async (req, res) => {
+  //To do - add status if error\
+  const login = req.body.login;
+  const password = req.body.password;
+  await Users.create({
+    login: login,
+    password: password
+  });
+  res.status(200).json("ok");
+});
+
+app.post('/logout', function (req, res, next) {
+  req.logout(function (err) {
+    if (err) { return next(err); }
+    res.status(200).json('/');
+  });
 });
 
 app.listen(port, () => {

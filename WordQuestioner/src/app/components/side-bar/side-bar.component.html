@@ -1,5 +1,9 @@
 <div class="side-bar-wrapper">
     <div class="side-bar-content">
+        <div class="side-bar-button" (click)="onLogout()">
+            <mat-icon>logout</mat-icon>
+            <p>log me out</p>
+        </div>
         <bar-button *ngFor="let sideBarButton of sideBarButtons" (changeView)="onChangeView($event)"
             [buttonTitle]="sideBarButton.buttonTitle" [iconName]="sideBarButton.iconName" [view]="sideBarButton.view"
             [activeView$]="activeView$">

@@ -13,6 +13,8 @@ import { WordTranslationsComponent } from './components/lesson/add-lesson/word-t
 import { MaterialModule } from 'src/modules/material-modules.module';
 import { MyLessonsComponent } from './components/lesson/my-lessons/my-lesson.component';
 import { ErrorInterceptor } from './interceptor/error-interceptor';
+import { LoginComponent } from './components/authentyfication/login/login.component';
+import { RegistrationComponent } from './components/authentyfication/registration/registration.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ErrorInterceptor } from './interceptor/error-interceptor';
     AddLessonComponent,
     ColoPickerComponent,
     WordTranslationsComponent,
-    MyLessonsComponent
+    MyLessonsComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

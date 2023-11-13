@@ -22,7 +22,7 @@ export class WordTranslationsComponent {
 
   public getTranslationValues(): Translation[] {
     if (this.translationsForm.invalid) {
-      this.snackBarService.openSnackBar("Your translation is invalid");
+      this.snackBarService.openErrorSnackBar("Your translation is invalid");
       return [];
     }
     return Object.values(this.translationsForm.controls).map(gropup => {
