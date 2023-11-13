@@ -17,6 +17,7 @@ const Categories = sequelize.define('categories', {
   category: Sequelize.STRING,
 });
 
+
 const Users = sequelize.define('users', {
   login: Sequelize.STRING,
   password: Sequelize.STRING
@@ -60,8 +61,8 @@ sequelize.sync()
 
 app.use(session({
   secret: 'your-secret-key',
-  resave: true,
-  saveUninitialized: true,
+  resave: false,
+  saveUninitialized: false,
   cookie: { secure: false },
 }));
 app.use(cors({
@@ -83,7 +84,7 @@ passport.use(new LocalStrategy(
     });
 
     if (password != user.password)
-      return done(null, false);
+      return done(null, false, { message: 'Wrong password' });
 
     return done(null, user);
   }
@@ -155,7 +156,7 @@ app.post('/registration', async (req, res) => {
   res.status(200).json("ok");
 });
 
-app.post('/logout', function (req, res, next) {
+app.get('/logout', function (req, res, next) {
   req.logout(function (err) {
     if (err) { return next(err); }
     res.status(200).json('/');
