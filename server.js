@@ -10,6 +10,7 @@ const sequelize = new Sequelize('my-database', null, null, {
 });
 const passport = require('passport');
 const session = require('express-session');
+const flash = require('connect-flash');
 const LocalStrategy = require('passport-local').Strategy;
 
 
@@ -71,8 +72,9 @@ app.use(cors({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use(bodyParser.json());
+app.use(flash()); 
+
 
 passport.use(new LocalStrategy(
   async (username, password, done) => {
@@ -82,6 +84,8 @@ passport.use(new LocalStrategy(
         login: username
       },
     });
+
+    if (!user) return done(null, false, { message: 'user does not exist' });
 
     if (password != user.password)
       return done(null, false, { message: 'Wrong password' });
@@ -140,10 +144,17 @@ app.get('/getCategories', [requireAuthentication], async (req, res) => {
 });
 
 app.post('/login',
-  passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }),
+  passport.authenticate('local', {
+    failureRedirect: '/login', failureFlash: true
+  }),
   function (req, res) {
     res.status(200).json("kfmf")
   });
+
+app.get('/login', (req, res) => {
+  const errorMessage = req.flash('error')[0];
+  res.status(401).json(errorMessage || 'Błąd uwierzytelniania.');
+});
 
 app.post('/registration', async (req, res) => {
   //To do - add status if error\

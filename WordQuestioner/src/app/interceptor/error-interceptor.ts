@@ -17,8 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             catchError((error: HttpErrorResponse) => {
                 if (error.status === 401)
                     this.router.navigateByUrl("/login")
-                else
-                    this.snackBarService.openErrorSnackBar(error.message)
+                this.snackBarService.openErrorSnackBar(error.error)
                 return throwError(error);
             })
         )
