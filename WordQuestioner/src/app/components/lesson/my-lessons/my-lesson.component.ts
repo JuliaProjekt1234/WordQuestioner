@@ -12,6 +12,12 @@ import { ViewService } from "src/app/services/view-services/view.service";
   styleUrls: ['./my-lesson.component.scss']
 })
 export class MyLessonsComponent {
+  public set setLessons(lessons: Lesson[]) {
+    this.lessons = lessons;
+    this.fliteredLessons = lessons;
+    this.showLessons = lessons.length > 0;
+  }
+
   public lessons: Lesson[] = [];
   public fliteredLessons: Lesson[] = [];
   public showLessons = false;
@@ -23,9 +29,7 @@ export class MyLessonsComponent {
     private lessonHttpService: LessonHttpService
   ) {
     this.lessonHttpService.getLessons().subscribe((lessons: Lesson[]) => {
-      this.lessons = lessons;
-      this.fliteredLessons = lessons;
-      this.showLessons = lessons.length > 0;
+      this.setLessons = lessons;
     });
   }
 
@@ -37,5 +41,12 @@ export class MyLessonsComponent {
     this.fliteredLessons = LessonFilter.FilterLessons(lessonFilter, this.lessons);
     this.showSearchedLessons = this.fliteredLessons.length > 0;
     this.snackBarService.openSnackBar("data is searched")
+  }
+
+  onDeleteLesson(lessonId: number) {
+    this.lessonHttpService.deleteLesson(lessonId).subscribe(() => {
+      this.setLessons = this.lessons.filter(lesson => lesson.id != lessonId);
+      this.snackBarService.openSnackBar("lesson was deleted")
+    });
   }
 }

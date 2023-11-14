@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { AppConstants } from "src/app/constants/app-constants";
-import { Lesson } from "src/app/models/lesson.model";
+import { BaseLesson, Lesson } from "src/app/models/lesson.model";
 
 
 @Injectable({
@@ -21,11 +21,15 @@ export class LessonHttpService {
         return this.http.get(`${AppConstants.BaseUrl}getCategories`, { withCredentials: true }) as Observable<string[]>;
     }
 
-    addNewLesson(lesson: Lesson): Observable<Object> {
+    addNewLesson(lesson: BaseLesson): Observable<Object> {
         return this.http.post(`${AppConstants.BaseUrl}addLesson`, lesson, { withCredentials: true });
     }
 
     getLessons(): Observable<Lesson[]> {
         return this.http.get(`${AppConstants.BaseUrl}getLessons`, { withCredentials: true }) as Observable<Lesson[]>;
+    }
+
+    deleteLesson(id: number):Observable<object>{
+        return this.http.delete(`${AppConstants.BaseUrl}deleteLesson/${id}`, { withCredentials: true })
     }
 }

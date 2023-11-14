@@ -1,4 +1,4 @@
-export class Lesson {
+export class BaseLesson {
     constructor(
         public name: string,
         public category: string,
@@ -13,7 +13,27 @@ export class Lesson {
     }
 
     public static CreateDefault() {
-        return new Lesson("", "", "", 0, 0, [], QuestionerType.Write, QuestionerLanguageMode.LeftWord)
+        return new BaseLesson("", "", "", 0, 0, [], QuestionerType.Write, QuestionerLanguageMode.LeftWord)
+    }
+}
+
+export class Lesson extends BaseLesson {
+    constructor(
+        public id: number,
+        name: string,
+        category: string,
+        colorTag: string,
+        finishedCount: number,
+        startedCount: number,
+        translations: Translation[],
+        questionerType: QuestionerType,
+        questionerLanguageMode: QuestionerLanguageMode,
+    ) {
+        super(name, category, colorTag, finishedCount, startedCount, translations, questionerType, questionerLanguageMode);
+    }
+
+    public static CreateDefaultLesson() {
+        return new Lesson(0, "", "", "", 0, 0, [], QuestionerType.Write, QuestionerLanguageMode.LeftWord)
     }
 }
 

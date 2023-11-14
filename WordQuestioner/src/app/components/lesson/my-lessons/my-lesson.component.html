@@ -32,7 +32,7 @@
             </ng-template>
 
             <ng-template #leassonsContainer>
-                <lesson-info *ngFor="let lesson of fliteredLessons" [setLesson]="lesson"></lesson-info>
+                <lesson-info (onDeleteLesson)="onDeleteLesson($event)" *ngFor="let lesson of fliteredLessons" [setLesson]="lesson"></lesson-info>
             </ng-template>
         </div>
 

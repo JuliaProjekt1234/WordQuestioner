@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Lesson } from "src/app/models/lesson.model";
 
 
@@ -13,7 +13,12 @@ export class LessonInfoComponent {
     this.lesson = value;
     this.borderStyle = `solid 4px ${value.colorTag}`;
   }
+  @Output() onDeleteLesson = new EventEmitter<number>();
 
-  lesson: Lesson = Lesson.CreateDefault();
+  lesson: Lesson = Lesson.CreateDefaultLesson();
   borderStyle = `solid 4px white`;
+
+  deleteLesson() {
+    this.onDeleteLesson.emit(this.lesson.id);
+  }
 }

@@ -1,7 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AppConstants } from "src/app/constants/app-constants";
-import { Lesson, QuestionerLanguageMode, QuestionerType, Translation } from "src/app/models/lesson.model";
+import { BaseLesson, Lesson, QuestionerLanguageMode, QuestionerType, Translation } from "src/app/models/lesson.model";
 import { LessonHttpService } from "src/app/services/http-services/lesson-http.service";
 import { SnackBarService } from "src/app/services/view-services/snack-bar.service";
 import { WordTranslationsComponent } from "./word-translations/word-translations.component";
@@ -62,8 +62,8 @@ export class AddLessonComponent {
     )
   }
 
-  private createLessonFromForm(translations: Translation[]): Lesson {
-    return new Lesson(this.getValueFromForm("name"), this.getValueFromForm("category"), this.activeColorTag,
+  private createLessonFromForm(translations: Translation[]): BaseLesson {
+    return new BaseLesson(this.getValueFromForm("name"), this.getValueFromForm("category"), this.activeColorTag,
       0, 0, translations, this.getValueFromForm("questionerType") as QuestionerType, this.getValueFromForm("questionerLanguageMode") as QuestionerLanguageMode)
   }
 

@@ -21,12 +21,16 @@
             width: 24px;
             height: 24px;
             cursor: pointer;
+            transition: all 0.3s ease-in-out;
         }
         mat-icon:first-of-type {
             color: var(--primary-green);
         }
         mat-icon:last-of-type {
             color: var(--primary-red);
+        }
+        mat-icon:hover{
+            text-shadow: var(--text-shadow-color);
         }
     }
 

@@ -133,6 +133,16 @@ app.post('/addLesson', [requireAuthentication], (req, res) => {
 });
 
 
+app.delete('/deleteLesson/:id', [requireAuthentication], (req, res) => {
+  Lessons.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  res.status(200).json('Not implemented yet');
+});
+
+
 app.post('/addCategory', [requireAuthentication], (req, res) => {
   const categoryName = req.body.categoryName;
   Categories.create({

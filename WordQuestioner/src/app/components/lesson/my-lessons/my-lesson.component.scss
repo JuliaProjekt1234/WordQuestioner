@@ -9,6 +9,7 @@
     box-shadow: var(--shadow-color);
     border-radius: 8px;
     padding: 24px;
+    flex-wrap: wrap;
     .no-data-wrapper {
         display: flex;
         flex-direction: column;
