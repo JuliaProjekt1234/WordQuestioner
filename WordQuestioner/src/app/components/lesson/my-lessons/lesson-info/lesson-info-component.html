@@ -1,0 +1,40 @@
+<div class="lesson-info-wrapper" [style.borderLeft]="borderStyle">
+    <div class="title-wrapper">
+        <p class="title">
+            {{lesson.name}}
+        </p>
+        <div>
+            <mat-icon>edit</mat-icon>
+            <mat-icon>delete_forever</mat-icon>
+        </div>
+    </div>
+    <div class="infos-wrapper">
+        <div class="infos-content">
+            <div class="info">
+                <p>Category: </p>
+                <p>{{lesson.category}}</p>
+            </div>
+            <div class="info">
+                <p>Questioner Type: </p>
+                <p>{{lesson.questionerType}}</p>
+            </div>
+            <div class="info">
+                <p>Questioner language mode: </p>
+                <p>{{lesson.questionerLanguageMode}}</p>
+            </div>
+            <div class="info-row">
+                <div class="info">
+                    <p>Finished: </p>
+                    <p>{{lesson.finishedCount}}</p>
+                </div>
+                <div class="info">
+                    <p>Started: </p>
+                    <p>{{lesson.startedCount}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="circle-button">
+            <div class="triangle"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="lesson-search-wrapper">
+    <form [formGroup]="lessonSearchForm" (ngSubmit)="onSubmit()">
+        <color-picker [activeColor]="''" [showClearButton]="true" (onChangedTagColor)="onChangedTagColor($event)"></color-picker>
+
+        <mat-form-field>
+            <mat-label>name of lesson</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+                <mat-option *ngFor="let category of categories" [value]="category">
+                    {{category}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Questioner Type</mat-label>
+            <mat-select formControlName="questionerType">
+                <mat-option *ngFor="let questionerType of questionerTypes" [value]="questionerType">
+                    {{questionerType}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+
+            <mat-label>Questioner Language Mode</mat-label>
+            <mat-select formControlName="questionerLanguageMode">
+                <mat-option *ngFor="let questionerLanguageMode of questionerLanguageModes"
+                    [value]="questionerLanguageMode">
+                    {{questionerLanguageMode}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button type="submit" class="button button-bg-blue">Search</button>
+    </form>
+</div>

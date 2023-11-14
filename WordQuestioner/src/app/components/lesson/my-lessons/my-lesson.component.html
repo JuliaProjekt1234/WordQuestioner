@@ -1,3 +1,40 @@
-<div class="my-lessons-wrapper">
+<ng-container *ngIf="showLessons; then lessonsInfo; else noLessonsInfo">
+</ng-container>
 
-</div>
+<ng-template #noLessonsInfo>
+    <div class="my-lessons-content">
+
+        <div class="no-data-wrapper">
+            <img src="./assets/images/no_results_data.svg" />
+            <div class="info-wrapper">
+                <p>No search data.</p>
+                <p>You don't have any lessons. You have to add lesson first</p>
+            </div>
+            <button (click)="onChangeAddLessonView()" class="button button-bg-blue">Add Lesson</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #lessonsInfo>
+    <div class="my-lessons-wrapper scroll">
+        <lesson-search (onFilterLessons)="onFilterLessons($event)"></lesson-search>
+        <div class="my-lessons-content">
+            <ng-container *ngIf="showSearchedLessons; then leassonsContainer; else noSearchedInfo">
+            </ng-container>
+
+            <ng-template #noSearchedInfo>
+                <div class="no-data-wrapper">
+                    <img src="./assets/images/no_results_data.svg" />
+                    <div class="info-wrapper">
+                        <p>No search data.</p>
+                        <p>You don't have any lessons with searched params. Change filters</p>
+                    </div>
+                </div>
+            </ng-template>
+
+            <ng-template #leassonsContainer>
+                <lesson-info *ngFor="let lesson of fliteredLessons" [setLesson]="lesson"></lesson-info>
+            </ng-template>
+        </div>
+
+    </div>
+</ng-template>

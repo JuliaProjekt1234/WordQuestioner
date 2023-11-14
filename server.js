@@ -16,6 +16,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const Categories = sequelize.define('categories', {
   category: Sequelize.STRING,
+  userId: Sequelize.INTEGER
 });
 
 
@@ -28,6 +29,7 @@ const Lessons = sequelize.define('lesson', {
   name: {
     type: Sequelize.STRING,
   },
+  userId: Sequelize.INTEGER,
   category: {
     type: Sequelize.STRING,
   },
@@ -73,7 +75,7 @@ app.use(cors({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
-app.use(flash()); 
+app.use(flash());
 
 
 passport.use(new LocalStrategy(
@@ -115,14 +117,17 @@ function requireAuthentication(req, res, next) {
   res.status(401).send("lack of authentification");
 }
 
-app.get('/getLessons', async (req, res) => {
-  let lessons = await Lessons.findAll();
+app.get('/getLessons', [requireAuthentication], async (req, res) => {
+  let lessons = await Lessons.findAll({
+    where: { userId: req.user.id }
+  });
   res.status(200).json(lessons);
 });
 
 
 app.post('/addLesson', [requireAuthentication], (req, res) => {
   const lesson = req.body;
+  lesson.userId = req.user.id;
   Lessons.create(lesson)
   res.status(200).json('Not implemented yet');
 });
@@ -132,6 +137,7 @@ app.post('/addCategory', [requireAuthentication], (req, res) => {
   const categoryName = req.body.categoryName;
   Categories.create({
     category: categoryName,
+    userId: req.user.id
   });
   res.status(200).json(categoryName);
 });
@@ -139,7 +145,9 @@ app.post('/addCategory', [requireAuthentication], (req, res) => {
 
 app.get('/getCategories', [requireAuthentication], async (req, res) => {
   //To do - add status if error\
-  let categoriesFromDb = await Categories.findAll();
+  let categoriesFromDb = await Categories.findAll({
+    where: { userId: req.user.id }
+  });
   res.status(200).json(categoriesFromDb.map(c => c.category));
 });
 

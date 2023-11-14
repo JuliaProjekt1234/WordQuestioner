@@ -1,0 +1,80 @@
+.lesson-info-wrapper {
+    padding: 16px;
+    background-color: white;
+    box-shadow: var(--shadow-color);
+    width: 350px;
+    height: auto;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    .title-wrapper {
+        display: flex;
+        justify-content: space-between;
+        .title {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        mat-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+        mat-icon:first-of-type {
+            color: var(--primary-green);
+        }
+        mat-icon:last-of-type {
+            color: var(--primary-red);
+        }
+    }
+
+    .infos-wrapper {
+        display: flex;
+        justify-content: space-between;
+        .infos-content {
+            display: flex;
+            flex-direction: column;
+            .info {
+                font-size: 12px;
+                display: flex;
+                gap: 4px;
+                p:first-of-type {
+                    font-weight: 500;
+                }
+            }
+            .info-row {
+                display: flex;
+                gap: 8px;
+            }
+        }
+        .circle-button {
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-green);
+            box-shadow: var(--shadow-color);
+            background-color: var(--primary-green);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+                box-shadow: var(--shadow-color-dark);
+            }
+            .triangle {
+                margin-left: 8px;
+                position: relative;
+                width: 0;
+                height: 0;
+                border-top: 15px solid transparent;
+                border-left: 20px solid #fff;
+                border-bottom: 15px solid transparent;
+            }
+        }
+    }
+}

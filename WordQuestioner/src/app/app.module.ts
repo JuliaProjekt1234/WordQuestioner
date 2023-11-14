@@ -8,13 +8,15 @@ import { BarButtonComponent } from './components/side-bar/bar-button/bar-button.
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AddLessonComponent } from './components/lesson/add-lesson/add-lesson.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ColoPickerComponent } from './components/lesson/add-lesson/color-picker-button/color-picker.component';
+import { ColoPickerComponent } from './components/color-picker-button/color-picker.component';
 import { WordTranslationsComponent } from './components/lesson/add-lesson/word-translations/word-translations.component';
 import { MaterialModule } from 'src/modules/material-modules.module';
 import { MyLessonsComponent } from './components/lesson/my-lessons/my-lesson.component';
 import { ErrorInterceptor } from './interceptor/error-interceptor';
 import { LoginComponent } from './components/authentyfication/login/login.component';
 import { RegistrationComponent } from './components/authentyfication/registration/registration.component';
+import { LessonInfoComponent } from './components/lesson/my-lessons/lesson-info/lesson-info-component';
+import { LessonSearchComponent } from './components/lesson/my-lessons/lesson-search/lesson-search.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { RegistrationComponent } from './components/authentyfication/registratio
     WordTranslationsComponent,
     MyLessonsComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LessonInfoComponent,
+    LessonSearchComponent
   ],
   imports: [
     BrowserModule,

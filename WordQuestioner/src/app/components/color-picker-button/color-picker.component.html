@@ -1,4 +1,6 @@
-<div class="tag-color" [style.backgroundColor]="activeColor" [matMenuTriggerFor]="menu"></div>
+<div class="tag-color" [style.backgroundColor]="activeColor" [matMenuTriggerFor]="menu">
+    <mat-icon *ngIf="showClearButton" (click)="clearColorPicker($event)">cancel</mat-icon>
+</div>
 
 <mat-menu #menu="matMenu">
     <div class="color-picker-menu">

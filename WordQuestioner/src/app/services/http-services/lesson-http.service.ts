@@ -22,10 +22,10 @@ export class LessonHttpService {
     }
 
     addNewLesson(lesson: Lesson): Observable<Object> {
-        return this.http.post(`${AppConstants.BaseUrl}addLesson`, lesson);
+        return this.http.post(`${AppConstants.BaseUrl}addLesson`, lesson, { withCredentials: true });
     }
 
-    getLessons(): Observable<Object> {
-        return this.http.get(`${AppConstants.BaseUrl}getLessons`);
+    getLessons(): Observable<Lesson[]> {
+        return this.http.get(`${AppConstants.BaseUrl}getLessons`, { withCredentials: true }) as Observable<Lesson[]>;
     }
 }
