@@ -17,6 +17,7 @@ import { LoginComponent } from './components/authentyfication/login/login.compon
 import { RegistrationComponent } from './components/authentyfication/registration/registration.component';
 import { LessonInfoComponent } from './components/lesson/my-lessons/lesson-info/lesson-info-component';
 import { LessonSearchComponent } from './components/lesson/my-lessons/lesson-search/lesson-search.component';
+import { RunLessonComponent } from './components/lesson/run-lesson/run-lesson.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { LessonSearchComponent } from './components/lesson/my-lessons/lesson-sea
     LoginComponent,
     RegistrationComponent,
     LessonInfoComponent,
-    LessonSearchComponent
+    LessonSearchComponent,
+    RunLessonComponent
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,9 @@
-<div class="lesson-info-wrapper" [style.borderLeft]="borderStyle">
+<div class="lesson-info-wrapper" [style.borderColor]="lesson.colorTag">
     <div class="title-wrapper">
         <p class="title">
             {{lesson.name}}
         </p>
-        <div>
+        <div class="lesson-tools">
             <mat-icon>edit</mat-icon>
             <mat-icon (click)="deleteLesson()">delete_forever</mat-icon>
         </div>
@@ -33,8 +33,9 @@
                 </div>
             </div>
         </div>
-        <div class="circle-button">
+        <a routerLink="/run_lesson" [state]="lesson" (click)="onStartLesson()" class="circle-button"
+            [ngStyle]="{ 'background-color': lesson.colorTag, 'border-color': lesson.colorTag }">
             <div class="triangle"></div>
-        </div>
+        </a>
     </div>
 </div>

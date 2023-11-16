@@ -1,0 +1,51 @@
+<div class="run-lesson-wrapper">
+
+    <ng-container *ngIf="isLessonFinished; then lessonfinished; else lessonForm">
+    </ng-container>
+
+    <ng-template #lessonfinished>
+        <div class="finished-lesson-info-wrapper">
+            <img src="./assets/images/undraw_happy_news.svg" />
+            <div class="info-wrapper">
+                <p>Congratulation!</p>
+                <p>You finished the lesson. If You want to start new lesson back to my lessons view</p>
+            </div>
+            <button class="button button-bg-blue" (click)="navigateToMyLessonView()">Back to my lessons</button>
+        </div>
+    </ng-template>
+
+    <ng-template #lessonForm>
+            <div class="questioner-wrapper" [style.borderColor]="lesson.colorTag">
+                <div class="questioner-header">
+                    <div class="name-wrapper ">
+                        <p>Name:</p>
+                        <p>{{lesson.name}}</p>
+                    </div>
+                    <div class="total-count-wrapper" [style.backgroundColor]="lesson.colorTag">
+                        <p>total count: </p>
+                        <p>{{runLessonModel.totalCount}}</p>
+                    </div>
+                </div>
+                <form [formGroup]="translationForm" (ngSubmit)="onSubmit()">
+                    <div class="form-section">
+                        <mat-form-field appearance="outline">
+                            <mat-label>word</mat-label>
+                            <input matInput formControlName="word" style="color: black;">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>translation</mat-label>
+                            <input matInput formControlName="translation">
+                        </mat-form-field>
+                    </div>
+                    <div class="translation-message-wrapper">
+                        <p *ngIf="showAnswer">
+                            {{runLessonModel.lastWrongTranslation.value}} -
+                            {{runLessonModel.lastWrongTranslation.translation}}
+                        </p>
+                    </div>
+                    <button type="submit" class="button button-bg-blue">Check</button>
+                </form>
+        </div>
+    </ng-template>
+
+</div>

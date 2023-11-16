@@ -20,7 +20,7 @@ export class MyLessonsComponent {
 
   public lessons: Lesson[] = [];
   public fliteredLessons: Lesson[] = [];
-  public showLessons = false;
+  public showLessons = true;
   public showSearchedLessons = true;
 
   constructor(

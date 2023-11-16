@@ -10,27 +10,35 @@
     transition: all 0.3s ease-in-out;
     border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
+    border-width: 0 0 0 4px;
+    border-style: solid;
     .title-wrapper {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 8px;
         .title {
             font-size: 16px;
             font-weight: 500;
         }
-        mat-icon {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-        }
-        mat-icon:first-of-type {
-            color: var(--primary-green);
-        }
-        mat-icon:last-of-type {
-            color: var(--primary-red);
-        }
-        mat-icon:hover{
-            text-shadow: var(--text-shadow-color);
+        .lesson-tools {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 4px;
+            mat-icon {
+                width: 24px;
+                height: 24px;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+            }
+            mat-icon:first-of-type {
+                color: var(--primary-green);
+            }
+            mat-icon:last-of-type {
+                color: var(--primary-red);
+            }
+            mat-icon:hover {
+                text-shadow: var(--text-shadow-color);
+            }
         }
     }
 
@@ -61,7 +69,8 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            border: 2px solid var(--primary-green);
+            border-width: 4px;
+            border-style: solid;
             box-shadow: var(--shadow-color);
             background-color: var(--primary-green);
             cursor: pointer;

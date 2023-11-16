@@ -132,6 +132,37 @@ app.post('/addLesson', [requireAuthentication], (req, res) => {
   res.status(200).json('Not implemented yet');
 });
 
+app.put('/startLesson/:id', [requireAuthentication], async (req, res) => {
+  let lessonId = req.params.id
+  let lesson = await Lessons.findOne({
+    where: { id: lessonId }
+  });
+  let lessonObject = lesson.dataValues;
+  lessonObject.startedCount++;
+  await Lessons.update(lessonObject, {
+    where: {
+      id: lessonId
+    }
+  })
+  res.status(200).json('Not implemented yet');
+});
+
+
+app.put('/finishLesson/:id', [requireAuthentication], async (req, res) => {
+  let lessonId = req.params.id
+  let lesson = await Lessons.findOne({
+    where: { id: lessonId }
+  });
+  let lessonObject = lesson.dataValues;
+  lessonObject.finishedCount++;
+  await Lessons.update(lessonObject, {
+    where: {
+      id: lessonId
+    }
+  })
+  res.status(200).json('Not implemented yet');
+});
+
 
 app.delete('/deleteLesson/:id', [requireAuthentication], (req, res) => {
   Lessons.destroy({

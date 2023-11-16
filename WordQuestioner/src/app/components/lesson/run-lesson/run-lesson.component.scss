@@ -1,0 +1,118 @@
+.run-lesson-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: 100%;
+    display: flex;
+    gap: 24px;
+    background-color: white;
+    box-shadow: var(--shadow-color);
+    border-radius: 8px;
+    padding: 24px;
+    align-items: center;
+    justify-content: center;
+
+    .finished-lesson-info-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        flex-direction: column;
+        img {
+            width: 30%;
+            height: auto;
+            margin-bottom: 48px;
+        }
+        .info-wrapper {
+            width: 30%;
+            text-align: center;
+            p:first-of-type {
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 3;
+            }
+            p:last-of-type {
+                font-size: 12px;
+            }
+        }
+        button {
+            width: 25% !important;
+        }
+    }
+
+    .questioner-wrapper {
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        width: 50%;
+        gap: 24px;
+        box-shadow: var(--shadow-color);
+        padding: 24px;
+        border-radius: 8px;
+        border-width: 0 0 0 4px;
+        border-style: solid;
+        margin-bottom: 64px;
+        margin-right: 64px;
+        .questioner-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: fit-content;
+            .name-wrapper {
+                width: 70%;
+                display: flex;
+                gap: 16px;
+                font-size: 18px;
+                p:first-of-type {
+                    font-weight: 500;
+                }
+            }
+            .total-count-wrapper {
+                text-transform: uppercase;
+                font-weight: 500;
+                font-size: 12px;
+                display: flex;
+                gap: 16px;
+                color: white;
+                padding: 16px;
+                height: fit-content;
+                padding: 16px;
+                border-radius: 8px;
+                box-shadow: var(--shadow-color);
+            }
+        }
+        form {
+            padding-top: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+
+            .form-section {
+                width: 100%;
+                gap: 24px;
+                display: flex;
+                mat-form-field {
+                    width: 50%;
+                }
+            }
+
+            button {
+                width: 90%;
+            }
+
+            .translation-message-wrapper {
+                width: 100%;
+                font-size: 14px;
+                text-align: center;
+                height: 24px;
+                color: var(--primary-red);
+            }
+        }
+    }
+}

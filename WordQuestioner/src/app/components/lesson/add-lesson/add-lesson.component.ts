@@ -1,7 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AppConstants } from "src/app/constants/app-constants";
-import { BaseLesson, Lesson, QuestionerLanguageMode, QuestionerType, Translation } from "src/app/models/lesson.model";
+import { BaseLesson, QuestionerLanguageMode, QuestionerType, Translation } from "src/app/models/lesson.model";
 import { LessonHttpService } from "src/app/services/http-services/lesson-http.service";
 import { SnackBarService } from "src/app/services/view-services/snack-bar.service";
 import { WordTranslationsComponent } from "./word-translations/word-translations.component";

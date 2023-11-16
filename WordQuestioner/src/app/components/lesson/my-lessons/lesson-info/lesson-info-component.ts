@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Lesson } from "src/app/models/lesson.model";
-
+import { LessonHttpService } from "src/app/services/http-services/lesson-http.service";
 
 @Component({
   selector: 'lesson-info',
@@ -9,16 +9,17 @@ import { Lesson } from "src/app/models/lesson.model";
 })
 
 export class LessonInfoComponent {
-  @Input() set setLesson(value: Lesson) {
-    this.lesson = value;
-    this.borderStyle = `solid 4px ${value.colorTag}`;
-  }
+  @Input() lesson: Lesson = Lesson.CreateDefaultLesson();
   @Output() onDeleteLesson = new EventEmitter<number>();
 
-  lesson: Lesson = Lesson.CreateDefaultLesson();
-  borderStyle = `solid 4px white`;
+
+  constructor(private lessonHttpService: LessonHttpService) { }
 
   deleteLesson() {
     this.onDeleteLesson.emit(this.lesson.id);
+  }
+
+  onStartLesson() {
+    this.lessonHttpService.startLesson(this.lesson.id).subscribe();
   }
 }

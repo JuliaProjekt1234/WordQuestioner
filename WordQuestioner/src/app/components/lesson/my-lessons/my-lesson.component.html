@@ -5,7 +5,7 @@
     <div class="my-lessons-content">
 
         <div class="no-data-wrapper">
-            <img src="./assets/images/no_results_data.svg" />
+            <img src="./assets/images/undraw_file_searching.svg" />
             <div class="info-wrapper">
                 <p>No search data.</p>
                 <p>You don't have any lessons. You have to add lesson first</p>
@@ -15,15 +15,15 @@
     </div>
 </ng-template>
 <ng-template #lessonsInfo>
-    <div class="my-lessons-wrapper scroll">
+    <div class="my-lessons-wrapper">
         <lesson-search (onFilterLessons)="onFilterLessons($event)"></lesson-search>
-        <div class="my-lessons-content">
+        <div class="my-lessons-content scroll">
             <ng-container *ngIf="showSearchedLessons; then leassonsContainer; else noSearchedInfo">
             </ng-container>
 
             <ng-template #noSearchedInfo>
                 <div class="no-data-wrapper">
-                    <img src="./assets/images/no_results_data.svg" />
+                    <img src="./assets/images/undraw_file_searching.svg" />
                     <div class="info-wrapper">
                         <p>No search data.</p>
                         <p>You don't have any lessons with searched params. Change filters</p>
@@ -32,7 +32,10 @@
             </ng-template>
 
             <ng-template #leassonsContainer>
-                <lesson-info (onDeleteLesson)="onDeleteLesson($event)" *ngFor="let lesson of fliteredLessons" [setLesson]="lesson"></lesson-info>
+                <div class="lesson-wrapper">
+                    <lesson-info (onDeleteLesson)="onDeleteLesson($event)" *ngFor="let lesson of fliteredLessons"
+                        [lesson]="lesson"></lesson-info>
+                </div>
             </ng-template>
         </div>
 

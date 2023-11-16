@@ -5,11 +5,15 @@
     max-height: 100%;
     display: flex;
     gap: 24px;
+    justify-content: space-between;
     background-color: white;
     box-shadow: var(--shadow-color);
     border-radius: 8px;
     padding: 24px;
     flex-wrap: wrap;
+    lesson-info {
+        height: fit-content;
+    }
     .no-data-wrapper {
         display: flex;
         flex-direction: column;
@@ -21,7 +25,7 @@
         img {
             width: 30%;
             height: auto;
-            margin-bottom: 64px;
+            margin-bottom: 48px;
         }
         .info-wrapper {
             width: 30%;
@@ -29,6 +33,7 @@
             p:first-of-type {
                 font-weight: 500;
                 font-size: 16px;
+                line-height: 3;
             }
             p:last-of-type {
                 font-size: 12px;
@@ -48,6 +53,18 @@
     gap: 8px;
 
     .my-lessons-content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
         padding: 64px 32px;
+        .lesson-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            height: fit-content;
+            width: fit-content;
+            justify-content: space-between;
+            max-width: 90%;
+        }
     }
 }

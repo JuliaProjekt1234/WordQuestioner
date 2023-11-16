@@ -29,7 +29,15 @@ export class LessonHttpService {
         return this.http.get(`${AppConstants.BaseUrl}getLessons`, { withCredentials: true }) as Observable<Lesson[]>;
     }
 
-    deleteLesson(id: number):Observable<object>{
+    deleteLesson(id: number): Observable<object> {
         return this.http.delete(`${AppConstants.BaseUrl}deleteLesson/${id}`, { withCredentials: true })
+    }
+
+    startLesson(id: number): Observable<object> {
+        return this.http.put(`${AppConstants.BaseUrl}startLesson/${id}`, "", { withCredentials: true })
+    }
+
+    finishLesson(id: number): Observable<object> {
+        return this.http.put(`${AppConstants.BaseUrl}finishLesson/${id}`, "", { withCredentials: true })
     }
 }
